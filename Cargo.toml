@@ -1,0 +1,12 @@
+[package]
+name = "katana-rs"
+authors = ["Chris Franssens"]
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+arrayfire = "3.8.5"
+
+[[example]]
+name = "feedforward"
+path = "examples/feedforward.rs"
