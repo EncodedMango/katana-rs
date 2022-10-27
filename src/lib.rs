@@ -1,6 +1,6 @@
 // General (applies to all networks)
 // TODO: Layer trait
-// TODO: Dataset struct
+// TODO: Dataset struct (kinda done (with it))
 
 // Feedforward network
 // TODO: Activation enum
@@ -21,3 +21,9 @@
 // Visualisation
 // TODO: Boring print functions for now until I have the networks figured out.
 // TODO: Cool graphs displaying how terrible a network is doing with WebGpu-rs
+
+mod layer;
+mod dataset;
+
+pub use dataset::Dataset;
+pub use layer::{Layer, DenseLayer, ReLUActivation, SoftmaxActivation};
