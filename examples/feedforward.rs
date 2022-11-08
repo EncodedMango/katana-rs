@@ -1,6 +1,6 @@
 use std::path::Path;
 use arrayfire::{af_print, Array, dim4, sum};
-use katana::{Layer, Dataset, DenseLayer, ReLUActivation, SoftmaxActivation};
+use katana::{Activation, Layer, Dataset, DenseLayer, BiographicalCrossEntropy};
 
 fn main() {
     let dataset: Dataset<f32> = Dataset::from_csv(&Path::new(&"examples/spiral.csv")).unwrap();
@@ -8,13 +8,16 @@ fn main() {
     let dense1: DenseLayer<f32> = DenseLayer::new(2, 3);
     let dense2: DenseLayer<f32> = DenseLayer::new(3, 3);
 
-    let activation1: ReLUActivation<f32> = ReLUActivation { dinputs: Array::new_empty(dim4!(1)) };
-    let activation2: SoftmaxActivation<f32> = SoftmaxActivation { dinputs: Array::new_empty(dim4!(1)) };
+    let activation1: Activation = Activation::ReLU;
+    let activation2: Activation = Activation::Softmax;
+
+    let loss: BiographicalCrossEntropy<f32> = BiographicalCrossEntropy {placeholder: Array::new_empty(dim4!(0))};
 
     let mut output = dense1.forward(&dataset.x);
     output = activation1.forward(&output);
     output = dense2.forward(&output);
     output = activation2.forward(&output);
+    //print!("{}", loss.calculate(&output, &dataset.y));
 
-    af_print!("{}", sum(&output, 1)); // seems about right
+    af_print!("{}", output); // seems about right
 }

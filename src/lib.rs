@@ -24,6 +24,8 @@
 
 mod layer;
 mod dataset;
+mod loss;
 
 pub use dataset::Dataset;
-pub use layer::{Layer, DenseLayer, ReLUActivation, SoftmaxActivation};
+pub use loss::BiographicalCrossEntropy;
+pub use layer::{Layer, DenseLayer, Activation};
