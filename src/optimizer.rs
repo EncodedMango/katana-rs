@@ -1,0 +1,1 @@
+pub enum Optimizer {SGD, None}
