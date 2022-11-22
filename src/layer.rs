@@ -8,5 +8,7 @@ impl<'a, T: HasAfEnum> Default for Layer<'a, T> {
     }
 }
 
-pub trait ForwardPass<'a, T: HasAfEnum> {fn forward(&mut self, x: &'a Array<T>);}
-pub trait BackwardPass {fn backward(&mut self);}
+pub trait Propagate<'a, T: HasAfEnum> {
+    fn forward(&mut self, x: &'a Array<T>);
+    fn backward(&mut self);
+}
